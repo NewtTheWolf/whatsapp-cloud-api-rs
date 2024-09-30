@@ -3,20 +3,28 @@ use crate::{
     WhatsappError,
 };
 
-const FACEBOOK_GRAPH_API_BASE_URL: &str = "https://graph.facebook.com/v17.0";
+const FACEBOOK_GRAPH_API_BASE_URL: &str = "https://graph.facebook.com/v20.0";
 
-pub struct WhatasppClient {
+pub struct Client {
     access_token: String,
     phone_number_id: String,
 }
 
-impl WhatasppClient {
+impl Client {
     pub fn new(access_token: &str, phone_number_id: &str) -> Self {
         Self {
             access_token: access_token.into(),
             phone_number_id: phone_number_id.into(),
         }
     }
+
+    /*     pub fn set_token(self, token: &str) {
+        self.access_token = token.into();
+    }
+
+    pub fn set_phone_number_id(self, phone_number_id: &str) {
+        self.phone_number_id = phone_number_id.into();
+    } */
 
     pub async fn send_message(&self, message: &Message) -> Result<MessageResponse, WhatsappError> {
         http_client::post(&self.messages_api_url(), &self.access_token, message).await

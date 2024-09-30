@@ -6,6 +6,7 @@ mod message;
 mod message_response;
 mod template_message;
 mod text_message;
+pub mod verification;
 
 pub mod webhooks;
 

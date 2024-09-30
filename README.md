@@ -1,4 +1,5 @@
 # whatsapp-cloud-api &emsp; [![Latest Version]][crates.io] [![Docs]][docs.rs]
+
 [Latest Version]: https://img.shields.io/crates/v/whatsapp-cloud-api.svg
 [crates.io]: https://crates.io/crates/whatsapp-cloud-api
 [Docs]: https://docs.rs/whatsapp-cloud-api/badge.svg
@@ -39,7 +40,7 @@ let parameters = Vec::from([Parameter::from_text("3")]);
 let components = Vec::from([Component::with_parameters("body", parameters)]);
 let template = Template::with_components(template_name, language, components);
 let message = Message::from_template(&to, template, None);
-let client = WhatasppClient::new(&access_token, &phone_number_id);
+let client = Client::new(&access_token, &phone_number_id);
 let response = client.send_message(&message).await?;
 ```
 
@@ -51,10 +52,9 @@ let phone_number_id = "<phone_number_id>";
 let to = "<to>";
 let text = Text::new("test message");
 let message = Message::from_text(&to, text, None);
-let client = WhatasppClient::new(&access_token, &phone_number_id);
+let client = Client::new(&access_token, &phone_number_id);
 client.send_message(&message).await?;
 ```
-
 
 For more details, please see the [tests] folder
 
